@@ -1,4 +1,4 @@
-# Sistema Ecommerce - Examen
+# Sistema Ecommerce - Examen 12
 
 Sistema basico de ecommerce desarrollado con arquitectura cliente-servidor. El sistema permite la gestion completa de un inventario de productos mediante operaciones CRUD y automatiza la obtencion de imagenes a traves del consumo de una API publica.
 
