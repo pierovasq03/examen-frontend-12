@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sistema Ecommerce - Examen
 
-## Getting Started
+Sistema basico de ecommerce desarrollado con arquitectura cliente-servidor. El sistema permite la gestion completa de un inventario de productos mediante operaciones CRUD y automatiza la obtencion de imagenes a traves del consumo de una API publica.
 
-First, run the development server:
+## Tecnologias Usadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* Backend: Express.js, Node.js
+* Base de Datos: PostgreSQL
+* Frontend: Next.js, TailwindCSS
+* Librerias: Joi (Validacion), Morgan (Logging), Axios (Consumo de API Externa)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## URLs del Proyecto en Linea
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* Frontend (Render): https://examen-frontend-12.onrender.com
+* Backend (Render): https://examen-backend-12.onrender.com
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Consumo de API Externa
 
-## Learn More
+El sistema integra el consumo automatico de una API externa (Lorem Picsum) al momento de registrar un nuevo producto en la base de datos. 
 
-To learn more about Next.js, take a look at the following resources:
+Flujo de la integracion:
+1. Al recibir una peticion POST en el endpoint `/api/products`, el backend intercepta los datos validados.
+2. Utilizando la libreria Axios, el servidor realiza una peticion GET a `https://picsum.photos/400`.
+3. Se captura la URL final de redireccion devuelta por la API externa.
+4. Esta URL se almacena automaticamente en el campo `image_url` del nuevo producto en PostgreSQL, sin requerir intervencion del usuario.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Instrucciones de Instalacion Local
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clonar el repositorio.
+2. Configurar la base de datos PostgreSQL:
+   * Ejecutar el script SQL en DBeaver (`CREATE DATABASE ecommerce_db;`).
+   * (Nota: La tabla `products` se generara automaticamente al iniciar el servidor gracias a la funcion de inicializacion en `server.js`).
+3. Levantar el Backend:
+   ```bash
+   cd ecommerce-backend
+   npm install
